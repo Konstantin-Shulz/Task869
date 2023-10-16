@@ -22,24 +22,26 @@ public class Main {
 
         int k = 0; //кол-во байдарок
         Arrays.sort(mas);
+        int i_light = 0; // самый легкий по весу человек после сортировки
+        int i_heavy = n-1;// самый тяжелый по весу человек после сортировки
 
         System.out.println(Arrays.toString(mas));
 
         if (!((n <= 1) || (d <= 1) || (n >= 15000) || (d >= 15000))) {
 
-            for (int i = 0; i < n - 1; i++) {
-                int i_light = i;
-                int i_heavy = n-1;
-                if ((mas[i_light] + mas[i_heavy]) >= d) {
-                    k++; i_light++;
+            while ((mas[i_light] < mas[i_heavy])){
+
+                if ((mas[i_light] + mas[i_heavy]) <= d) {
+                    k++;
+                    i_light++;
                     i_heavy--;
                 }
                 else{
-                    k++; i_heavy--;
+                    k++;
+                    i_heavy--;
                 }
-
             }
-            System.out.println("Байдарок нужно " + k);
+            System.out.println("Байдарок нужно = "+k);
             //String str = Integer.toString(k); // преобразование числа в строку
             String str = String.valueOf(k);    // преобразование числа в строку
             String outputFName = "OUTPUT.TXT";
@@ -48,5 +50,4 @@ public class Main {
         else
         System.out.println("Конец истории");
     }
-
 }
