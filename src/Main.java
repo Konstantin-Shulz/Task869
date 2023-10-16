@@ -8,9 +8,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        int[] mas = readNumberFromF("INPUT.TXT");
-        int n = mas.length;
-        int d = mas[0];
+        //int[] mas = readNumberFromF("INPUT.TXT");
+
+        Scanner scan = new Scanner(new File("INPUT.TXT"));
+        int n = scan.nextInt();
+        int d = scan.nextInt();
+        int[] mas = new int[n];
+        for (int i = 0; i < mas.length; i++) {
+            mas[i] = scan.nextInt();
+        }
+        System.out.println(Arrays.toString(mas));
+        System.out.println("d = "+d);
+        System.out.println("n = "+n);
+        //int n = mas.length;
+        //int d = mas[0];
         int k = 0; //кол-во байдарок
 
 
