@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) throws IOException {
 
@@ -22,32 +21,32 @@ public class Main {
 
         int k = 0; //кол-во байдарок
         Arrays.sort(mas);
-        int i_light = 0; // самый легкий по весу человек после сортировки
-        int i_heavy = n-1;// самый тяжелый по весу человек после сортировки
+        int i_light = 0; // самый легкий по весу человек TODO:после сортировки
+        int i_heavy = n-1;// самый тяжелый по весу человек TODO:после сортировки
 
         System.out.println(Arrays.toString(mas));
 
-        if (!((n <= 1) || (d <= 1) || (n >= 15000) || (d >= 15000))) {
+            if (!((n <= 1) || (d <= 1) || (n >= 15000) || (d >= 15000)||(mas[i_heavy])>d)) {
 
-            while ((mas[i_light] < mas[i_heavy])){
+                while ((i_light <= i_heavy)){
 
-                if ((mas[i_light] + mas[i_heavy]) <= d) {
-                    k++;
-                    i_light++;
-                    i_heavy--;
+                    if ((mas[i_light] + mas[i_heavy]) <= d) {
+                        k++;
+                        i_light++;
+                        i_heavy--;
+                    }
+                    else{
+                        k++;
+                        i_heavy--;
+                    }
                 }
-                else{
-                    k++;
-                    i_heavy--;
-                }
+                System.out.println("Байдарок нужно = "+k);
             }
-            System.out.println("Байдарок нужно = "+k);
-            //String str = Integer.toString(k); // преобразование числа в строку
-            String str = String.valueOf(k);    // преобразование числа в строку
-            String outputFName = "OUTPUT.TXT";
-            Files.writeString(Path.of(outputFName), str);
-        }
-        else
-        System.out.println("Конец истории");
+            else
+            System.out.println("Конец истории или все не уедут");
+        String outputFName = "OUTPUT.TXT";//запись в файл результата
+        //Integer.toString(k);            // преобразование числа в строку
+        //String.valueOf(k);              // преобразование числа в строку
+        Files.writeString(Path.of(outputFName), String.valueOf(k));
     }
 }
